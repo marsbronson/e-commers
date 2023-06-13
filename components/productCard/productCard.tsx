@@ -38,7 +38,6 @@ export const ProductCard = ({
   const cardList = useSelector(selectCardList);
   const favoriteList = useSelector(selectFavoriteList);
   const favorite = favoriteList.includes(product);
-  // const [favorite, setFavorite] = useState(isFavorite);
 
   const ProductInCard = cardList.filter((item) => item.product === product);
   const productAmount = ProductInCard.length > 0 ? ProductInCard[0].amount : 0;
