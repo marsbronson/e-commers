@@ -23,6 +23,7 @@ import {
 import {
   addToFavorite,
   removeFromFavorite,
+  selectFavoriteList,
 } from "../favoriteList/favoriteListSlice";
 import { IncrementDecrement } from "../incrementDecrement/incrementDecrement";
 
@@ -35,15 +36,15 @@ export const ProductCard = ({
 }) => {
   const dispatch = useDispatch();
   const cardList = useSelector(selectCardList);
-  const [favorite, setFavorite] = useState(isFavorite);
+  const favoriteList = useSelector(selectFavoriteList);
+  const favorite = favoriteList.includes(product);
+  // const [favorite, setFavorite] = useState(isFavorite);
 
   const ProductInCard = cardList.filter((item) => item.product === product);
   const productAmount = ProductInCard.length > 0 ? ProductInCard[0].amount : 0;
   const addToFavourite = () => {
-    setFavorite(!favorite);
     if (favorite) {
       dispatch(removeFromFavorite(product));
-      return;
     } else {
       dispatch(addToFavorite(product));
     }
